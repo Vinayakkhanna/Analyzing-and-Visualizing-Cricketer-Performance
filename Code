@@ -1,0 +1,41 @@
+cricketers_data <- data.frame(
+  Player = c("Virat", "Rohit", "Hardik", "Bumrah", "Surya"),
+  Matches = c(250, 230, 120, 130, 90),
+  Runs = c(12000, 10000, 2500, 200, 2800),
+  StrikeRate = c(93.5, 88.2, 135.0, 60.3, 145.6),
+  Wickets = c(8, 1, 70, 130, 2)
+)
+# Function to summarize player stats
+summarize_cricket_stats <- function(data) {
+  data$AvgRuns <- round(data$Runs / data$Matches, 2)
+  cat("🏏 Cricketer Summary:\n")
+  print(data[, c("Player", "Matches", "Runs", "AvgRuns", "StrikeRate", "Wickets")])
+  
+  cat("\nTop Batsman:", data$Player[which.max(data$Runs)], "\n")
+  cat("Top Bowler:", data$Player[which.max(data$Wickets)], "\n")
+}
+
+# Plotting Runs
+plot_runs <- function(data) {
+  barplot(data$Runs, names.arg = data$Player, col = "blue",
+          main = "Total Runs by Players", ylab = "Runs")
+}
+
+# Plotting Wickets
+plot_wickets <- function(data) {
+  barplot(data$Wickets, names.arg = data$Player, col = "darkgreen",
+          main = "Total Wickets by Players", ylab = "Wickets")
+}
+
+# Plotting Strike Rates
+plot_strike_rate <- function(data) {
+  barplot(data$StrikeRate, names.arg = data$Player, col = "orange",
+          main = "Strike Rates of Players", ylab = "Strike Rate")
+}
+
+# Execute
+summarize_cricket_stats(cricketers_data)
+plot_runs(cricketers_data)
+plot_wickets(cricketers_data)
+plot_strike_rate(cricketers_data)
+
